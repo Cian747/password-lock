@@ -1,6 +1,7 @@
 import unittest
 from user import User
 from cred import Credentials
+import pyperclip
 
 class TestUserCred(unittest.TestCase):
     
@@ -28,7 +29,6 @@ class TestUserCred(unittest.TestCase):
         Credentials.cred_list = []
 
 
-
     def test_init(self):
         '''
         first test to test both objects.
@@ -54,6 +54,17 @@ class TestUserCred(unittest.TestCase):
         self.assertEqual(len(User.user_list),1)
 
 
+    def save_multiple_user(self):
+        '''
+        create multiple users
+        '''
+        self.new_user.save_user()
+        test_user = User("Me","You","MeU12","1234")
+        test_user.save_user()
+
+        self.assertEqual(len(User.user_list),2)
+
+
     def test_add_credentials(self):
         '''
         Credentials can be added and saved
@@ -61,6 +72,41 @@ class TestUserCred(unittest.TestCase):
 
         self.new_cred.add_credentials()
         self.assertEqual(len(Credentials.cred_list),1)
+
+
+    def test_delete_user(self):
+        '''
+        delete user
+        '''
+        self.new_user.save_user()
+        test_user = User("Me","You","MeU12","1234")
+        test_user.save_user()
+
+        #test if user can be deleted
+        self.new_user.delete_user()
+        self.assertEqual(len(User.user_list),1)
+
+
+    def test_delete_cred(self):
+        '''
+        Checking whether credentials can be deleted
+        '''
+
+        self.new_cred.add_credentials()
+        test_cred = Credentials("Our12","1234","MeU12","mailchimp")
+        test_cred.add_credentials()
+
+        #test if user can be deleted
+        self.new_cred.delete_cred()
+        self.assertEqual(len(Credentials.cred_list),1)
+
+    def test_display_credentials(self):
+        '''
+        Assert that the credentials are available
+        '''
+        self.assertEqual(Credentials.display_credentials(),Credentials.cred_list)
+
+
 
 
     

@@ -30,4 +30,31 @@ class Credentials:
         '''
         Credentials.cred_list.append(self)
 
-        
+
+    def delete_cred(self):
+        '''
+        Able to delete credentials
+        '''
+
+        Credentials.cred_list.remove(self)
+
+    # @classmethod
+    # def credentials_exist(cls):
+    #     '''
+    #     Check if user_name exists
+
+    #     Return:
+    #         Boolean True or false
+    #     '''
+    #     for cred in cls.cred_list:
+    #         if cred.system_username == system_username:
+    #             return True
+    #         else:
+    #             return False 
+
+    @classmethod
+    def display_credentials(cls):
+        """
+        display your credentials list
+        """
+        return cls.cred_list

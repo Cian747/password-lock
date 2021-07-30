@@ -36,4 +36,9 @@ class User:
         '''
         save multiple users
         '''
-        
+
+    def delete_user(self):
+        '''
+        delete contacts
+        '''    
+        User.user_list.remove(self)
