@@ -73,6 +73,14 @@ class TestUserCred(unittest.TestCase):
         self.new_cred.add_credentials()
         self.assertEqual(len(Credentials.cred_list),1)
 
+    def test_store_multiple_credentials(self):
+        '''
+        Checking if multiple credentials
+        '''
+
+        self.new_cred.add_credentials()
+        test_cred = Credentials("Bills","1234","Me12","Twitter")
+        test_cred.add_credentials()
 
     def test_delete_user(self):
         '''
@@ -106,6 +114,18 @@ class TestUserCred(unittest.TestCase):
         '''
         self.assertEqual(Credentials.display_credentials(),Credentials.cred_list)
 
+    def test_search_credentials(self):
+        '''
+        Confirm username can be located on the list
+        '''
+        self.new_cred.add_credentials()
+        test_cred = Credentials("Bills","1234","Me12","Twitter")
+        test_cred.add_credentials() 
+
+        #Assert that account name can be verified
+        grid_username = Credentials.credentials_exist("Me12")
+
+        self.assertTrue(grid_username)    
 
 
 

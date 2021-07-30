@@ -1,3 +1,6 @@
+import secrets
+import string
+
 class Credentials:
     """
     Created user class that will store all the data upon login
@@ -38,19 +41,20 @@ class Credentials:
 
         Credentials.cred_list.remove(self)
 
-    # @classmethod
-    # def credentials_exist(cls):
-    #     '''
-    #     Check if user_name exists
-
-    #     Return:
-    #         Boolean True or false
-    #     '''
-    #     for cred in cls.cred_list:
-    #         if cred.system_username == system_username:
-    #             return True
-    #         else:
-    #             return False 
+    @classmethod
+    def credentials_exist(cls):
+        '''
+        Check if user_name exists
+        Args:
+            system_username: username to be searched for.
+        Return:
+            Boolean True or false
+        '''
+        for cred in cls.cred_list:
+            if cred.system_username == cls.system_username:
+                return True
+            else:
+                return False 
 
     @classmethod
     def display_credentials(cls):
@@ -58,3 +62,12 @@ class Credentials:
         display your credentials list
         """
         return cls.cred_list
+
+    def generate_password(self):
+        '''
+        generates random password
+        '''
+        alphabet = string.ascii_letters + string.digits
+        password = ''.join(secrets.choice(alphabet) for i in range(20))
+
+        return password
