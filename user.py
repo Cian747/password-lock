@@ -23,3 +23,17 @@ class User:
           self.last_name = last_name
           self.user_name = user_name
           self.password = password
+
+
+    def save_user(self):
+        '''
+        save the user input details
+        '''
+
+        User.user_list.append(self)
+
+    def save_multiple_user(self):
+        '''
+        save multiple users
+        '''
+        

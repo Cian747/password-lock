@@ -24,3 +24,10 @@ class Credentials:
         self.system_username = system_username
         self.account_name = account_name
  
+    def add_credentials(self):
+        '''
+        Add credentials
+        '''
+        Credentials.cred_list.append(self)
+
+        
