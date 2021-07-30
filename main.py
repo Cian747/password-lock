@@ -24,23 +24,37 @@ def save_credential(cred):
 
 
 
-def search_credential(cred):
+def validate_credential(cred):
     '''
     Search for your username
     '''
-    Credentials.credentials_exist(cred)
-    
+    return Credentials.credentials_exist(cred)
+
+
+def find_credential(cred):
+    '''
+    Finds the username
+    '''
+    return Credentials.search_credentials(cred)
+
+
+def get_password():
+    '''
+    Get your generated password
+    '''
+    return Credentials.generate_password()
+
 def save_user(user):
     '''
     save your account upon login
     '''
     User.save_user(user)
 
-def delete_cred():
+def delete_cred(cred):
     '''
     Delete credentials
     '''
-    Credentials.delete_cred()
+    Credentials.delete_cred(cred)
 
 def show_cred():
     '''
@@ -66,7 +80,6 @@ def main():
                 print("Sign up")
                 print("-"*10)
 
-                 
                 print ("First name ....")
                 f_name = input()
 
@@ -102,49 +115,44 @@ def main():
             print("-"*10)
             new_username = input()
             print("Account password: ")
+            print("-"*5)
             print("To generate password type - ga")
             gen_rate = input().lower()
-                
-            print("-"*10)
-            new_password = input()
+
+            if gen_rate == "ga":
+                new_password = get_password()
+                print(new_password)
+            else:
+                print("Type in yours") 
+                print("-"*10)
+                new_password = input()
             print("Account being made for? i.e Instagram,Twitter,Facebook: ")
             print("-"*10)
             account_name = input() 
 
             save_credential(create_credential(new_username,new_password,sys_username,account_name)) #created a credential
 
-        elif short_code == "dc":
-            print("Display credentials")
-            print("-"*20)
-            print("Here are your other account credentials")
-            print("\n")
 
-            for credential in show_cred():
-                print("User ID")
-                print(f"{credential.system_username}")
-                print("\n")
-                print("Account credentials")
-                print("-"*10)
-                print(f"{credential.user_name} ....... {credential.password}")
-                print("\n")
-
-        # elif short_code == "rm":
-        #     print("Kindly enter your Grid username")
-        #     said_name = str(input())
-        #     if search_credential(said_name) == said_name:
-        #         for credential in Credentials.cred_list:
-        #             delete_cred(credential)
-
-        # elif short_code == "dc":
-        #     print("Kindly enter your Grid username: ")
-        #     said_name = str(input())
-        #     if search_credential(said_name):
-        #         for credential in Credentials.cred_list:
-        #             print(f"Account name: {credential.account_name}.....Username{credential.user_name}....Password{credential.password} ")
-        #             print("\n")
-
+        elif short_code == "rm":
+            print("Kindly enter your Grid username")
+            said_name = str(input())
+            if validate_credential(said_name):
+                print("Please input user name for account you would like to delete: ")
+                name_input = str(input()) 
+                obtained_input = find_credential(name_input)
+                delete_cred(obtained_input)
+                    
             print("Account has been deleted")
             print("-"*20)
+
+        elif short_code == "dc":
+            print("Kindly enter your Grid username: ")
+            said_name = str(input())
+            if validate_credential(said_name):
+                for credential in Credentials.cred_list:
+                    print(f"Account name: {credential.account_name}.....Username: {credential.user_name}....Password: {credential.password}")
+                    print("\n")
+
 
         elif short_code == "ex":
             print("Hope I helped. Goodbye....")

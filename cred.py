@@ -1,4 +1,4 @@
-import secrets
+import random
 import string
 
 class Credentials:
@@ -42,7 +42,7 @@ class Credentials:
         Credentials.cred_list.remove(self)
 
     @classmethod
-    def credentials_exist(cls):
+    def credentials_exist(cls,text):
         '''
         Check if user_name exists
         Args:
@@ -51,10 +51,21 @@ class Credentials:
             Boolean True or false
         '''
         for cred in cls.cred_list:
-            if cred.system_username == cls.system_username:
+            if cred.system_username == text:
                 return True
             else:
                 return False 
+
+    @classmethod
+    def search_credentials(cls,text):
+        '''
+        search for username
+        Args:
+            user_name:name of account to be registered
+        '''
+        for cred in cls.cred_list:
+            if cred.user_name == text:
+                return cred
 
     @classmethod
     def display_credentials(cls):
@@ -63,11 +74,11 @@ class Credentials:
         """
         return cls.cred_list
 
-    def generate_password(self):
+    def generate_password():
         '''
         generates random password
         '''
         alphabet = string.ascii_letters + string.digits
-        password = ''.join(secrets.choice(alphabet) for i in range(20))
+        password = ''.join(random.choice(alphabet) for _ in range(8))
 
         return password

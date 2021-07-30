@@ -114,7 +114,7 @@ class TestUserCred(unittest.TestCase):
         '''
         self.assertEqual(Credentials.display_credentials(),Credentials.cred_list)
 
-    def test_search_credentials(self):
+    def test_get_credentials(self):
         '''
         Confirm username can be located on the list
         '''
@@ -123,9 +123,9 @@ class TestUserCred(unittest.TestCase):
         test_cred.add_credentials() 
 
         #Assert that account name can be verified
-        grid_username = Credentials.credentials_exist("Me12")
+        grid_username = Credentials.search_credentials("Bills")
 
-        self.assertTrue(grid_username)    
+        self.assertEqual(grid_username.user_name,test_cred.user_name)    
 
 
 
