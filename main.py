@@ -101,7 +101,6 @@ def main():
                 print(f"Grid: User name: {us_name} ")
                 print("-"*5)
                 print(f"Grid; Password: {pass_word}")
-                print("-"*5)
                 print("-"*20)
 
         elif short_code == "cc":
