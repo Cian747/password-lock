@@ -8,15 +8,15 @@ Create an account and store account details for other host accounts
 ```
 https://github.com/Cian747/password-lock.git
 ```
-* Run the main.py
-```
-./main.py
-```
 * Run tests on the test file
 ```
 python3.9(or whichever version) test_user.py 
 ```
-* After successful tests you can proced to create an account.
+* After successful tests you can proceed to create an account.
+*  Run the main.py
+```
+./main.py
+```
 * Store credential details.
 * View credentials created.
 
