@@ -1,5 +1,5 @@
 # GRID-LOCK
-#### Application to create account, 2021
+#### Application to create and track account details and passwords, 2021
 #### By **[CIAN](https://github.com/Cian747)**
 ## Description
 Create an account and store account details for other host accounts
@@ -16,7 +16,7 @@ https://github.com/Cian747/password-lock.git
 ```
 python3.9(or whichever version) test_user.py 
 ```
-* Create an account.
+* After successful tests you can proced to create an account.
 * Store credential details.
 * View credentials created.
 
